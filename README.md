@@ -1,43 +1,40 @@
-# Proyecto Base Django 🐍
+# 🐍 Proyecto Base Django
 
 Este es un proyecto base para comenzar desarrollos en Django con:
 
-✅ PostgreSQL como base de datos lista para compeltar datos de manera local en settings.py
-✅ Admin personalizado con (Biblioteca) Jazzmin  
-✅ Estructura lista para clonar, renombrar y desplegar
+✅ PostgreSQL como base de datos lista para configurar en `settings.py`  
+✅ Admin personalizado con [Jazzmin] (https://github.com/farridav/django-jazzmin)  
+✅ Estructura lista para clonar, renombrar y desplegar  
+✅ También puedes usar SQLite3 (la base de datos por defecto de Django)
 
+---
 
-✅También puedes usar la base de datos por defecto sqlite3, que viene incluida con Django.
-No necesitas instalar ni configurar nada adicional.
+## 👤 Usuario de prueba recomendado
 
-👤 Te recomiendo crear un usuario administrador así:
-
+```
 Usuario: admin
-
 Correo: admin@gmail.com
-
 Contraseña: admin123
-
-📝 Luego, cuando estés listo para producción o despliegue, puedes cambiar a PostgreSQL simplemente editando el archivo .env y el bloque DATABASES en settings.py.
+```
 
 ---
 
 ## 🚀 Requisitos
 
 - Python 3.10+
-- PostgreSQL instalado
+- PostgreSQL instalado (opcional si usarás SQLite)
 - pip, virtualenv
 
 ---
 
-## 🧱 Estructura de instalación
+## 📦 Clonar e instalar
 
 ```bash
-git clone https://github.com/tu_usuario/tu_repo.git
-cd django_base_project01
+git clone https://github.com/PabloIMH/django-base-project.git
+cd django-base-project
 
 python -m venv env
-.\env\Scriptsctivate  # en Windows
+.\env\Scripts ctivate  # en Windows
 source env/bin/activate  # en Mac/Linux
 
 pip install -r requirements.txt
@@ -45,41 +42,56 @@ pip install -r requirements.txt
 
 ---
 
-## 🔐 Configuración del entorno `.env`
+## 🔐 Configurar entorno `.env`
 
-Crea un archivo `.env` en la raíz con el siguiente contenido:
+Crea un archivo llamado `.env` en la raíz con este contenido:
 
 ```env
-SECRET_KEY=tu_clave_generada
+SECRET_KEY=tu_clave_segura_generada
 DEBUG=True
 
-DB_NAME=django_base
-DB_USER=postgres
-DB_PASSWORD=tu_password
-DB_HOST=localhost
-DB_PORT=5432
+# PostgreSQL (deja en blanco para SQLite)
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
+DB_HOST=
+DB_PORT=
+```
+
+### 🧪 ¿Cómo generar una clave segura?
+
+CTRL + Ñ (Windows)= Para abrir terminal en VS por ejemplo 
+```bash
+python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"   (copiar y pegar esta linea)
 ```
 
 ---
 
-## 🛠 Migraciones e inicio
+## ⚙️ Migraciones y superusuario
 
 ```bash
 python manage.py migrate
 python manage.py createsuperuser
-python manage.py runserver
 ```
 
-Accede al panel de administración: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
+---
+
+## ▶️ Ejecutar el servidor
+
+```bash
+python manage.py runserver
+```
+Luego visita: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+Para admin: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
 
 ---
 
 ## 📁 Renombrar app `core`
 
-1. Cambia la carpeta `core/` por el nombre que quieras (ej: `baseDjango/`)
-2. Renombra en `INSTALLED_APPS` de `'core'` a `'blog'`
-3. Ajusta los imports: `from core.` → `from blog.`
-4. Renombra las carpetas de `templates/core/` y `static/core/`
+1. Cambia la carpeta `core/` por el nombre deseado (ej: `blog/`)
+2. En `settings.py`, cambia `'core'` por `'blog'` en `INSTALLED_APPS`
+3. Ajusta todos los imports: `from core.` → `from blog.`
+4. Renombra también las carpetas `templates/core/` y `static/core/`
 
 ---
 
@@ -87,5 +99,9 @@ Accede al panel de administración: [http://127.0.0.1:8000/admin](http://127.0.0
 
 - Django
 - PostgreSQL
-- Jazzmin (panel admin)
-- Python-Decouple (.env)
+- Jazzmin
+- Python-Decouple
+
+---
+
+© Proyecto base creado por PabloIMH – ¡listo para desarrollos profesionales! 🔥
